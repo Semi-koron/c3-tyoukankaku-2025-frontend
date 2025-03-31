@@ -24,6 +24,7 @@ function App() {
   const [text, setText] = useState("");
   const [chatData, setChatData] = useState<string>("");
   const [chatWindow, setChatWindow] = useState(false);
+  const [color, setColor] = useState("#ffffff");
   const { data, sendData, userId } = useWebSocket();
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(
     () => [
@@ -62,6 +63,7 @@ function App() {
                 text={text}
                 chatWindow={chatWindow}
                 sendData={sendData}
+                color={color}
                 id={userId}
               />
             </Physics>
@@ -78,6 +80,8 @@ function App() {
           setChatWindow={setChatWindow}
           chatWindow={chatWindow}
           setText={setText}
+          color={color}
+          setColor={setColor}
         />
       </KeyboardControls>
     </>

@@ -9,6 +9,8 @@ type ChatWindowProps = {
   setChatWindow: React.Dispatch<React.SetStateAction<boolean>>;
   chatWindow: boolean;
   setText: React.Dispatch<React.SetStateAction<string>>;
+  color: string;
+  setColor: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const ChatWindow = ({
@@ -17,6 +19,8 @@ export const ChatWindow = ({
   setChatWindow,
   chatWindow,
   setText,
+  color,
+  setColor,
 }: ChatWindowProps) => {
   const [sub, _get] = useKeyboardControls<Controls>();
 
@@ -59,6 +63,14 @@ export const ChatWindow = ({
             zIndex: 1,
           }}
         >
+          <input
+            type="color"
+            onChange={(e) => {
+              setColor(e.target.value);
+              console.log(e.target.value);
+            }}
+            value={color}
+          />
           <input
             type="text"
             style={{

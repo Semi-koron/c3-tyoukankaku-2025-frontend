@@ -23,7 +23,7 @@ export const OtherPlayer = ({ data }: OtherPlayerProps) => {
       {/* Player */}
       <mesh position={position} rotation={rotation}>
         <boxGeometry />
-        <meshStandardMaterial color="orange" />
+        <meshStandardMaterial color={data.color} />
         <Html
           center
           distanceFactor={10}

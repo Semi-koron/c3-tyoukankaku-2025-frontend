@@ -11,9 +11,16 @@ type PlayerProps = {
   id: string;
   chatWindow: boolean;
   sendData: (data: SendData) => void;
+  color: string;
 };
 
-export const Player = ({ text, id, chatWindow, sendData }: PlayerProps) => {
+export const Player = ({
+  text,
+  id,
+  chatWindow,
+  sendData,
+  color,
+}: PlayerProps) => {
   const playerRef = useRef<RapierRigidBody>(null);
   const [sub, _get] = useKeyboardControls<Controls>();
 
@@ -91,7 +98,7 @@ export const Player = ({ text, id, chatWindow, sendData }: PlayerProps) => {
       <RigidBody ref={playerRef} colliders="cuboid" position={[0, 1, 0]}>
         <mesh>
           <boxGeometry />
-          <meshStandardMaterial color="#888811" />
+          <meshStandardMaterial color={color} />
           <Html
             center
             distanceFactor={10}
