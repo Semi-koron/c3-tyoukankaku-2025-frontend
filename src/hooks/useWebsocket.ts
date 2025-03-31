@@ -12,7 +12,7 @@ const generateRandomId = () => {
 };
 
 export const useWebSocket = () => {
-  const url = "c3-tyoukankaku-backend.semikoron.org";
+  const url = "wss://c3-tyoukankaku-backend.semikoron.org";
   const [data, setData] = useState<ReceiveData>([]);
   const ws = useRef<WebSocket | null>(null);
   const userId = useRef<string>(generateRandomId()); // 一度だけ生成
