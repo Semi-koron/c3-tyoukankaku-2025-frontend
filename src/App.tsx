@@ -1,13 +1,15 @@
 import { Sky } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import "./App.css";
 import { useMemo, useState } from "react";
 import { KeyboardControlsEntry } from "@react-three/drei";
 import { KeyboardControls } from "@react-three/drei";
 import { Player } from "./components/Player";
 import { ChatWindow } from "./components/Chatwindow";
+import { useWebSocket } from "./hooks/useWebsocket";
+import { OtherPlayer } from "./components/OtherPlayer";
 
 export enum Controls {
   forward = "forward",
@@ -22,6 +24,7 @@ function App() {
   const [text, setText] = useState("");
   const [chatData, setChatData] = useState<string>("");
   const [chatWindow, setChatWindow] = useState(false);
+  const { data, sendData, userId } = useWebSocket();
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(
     () => [
       { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
@@ -33,6 +36,10 @@ function App() {
     ],
     []
   );
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <>
@@ -51,8 +58,17 @@ function App() {
                   />
                 </mesh>
               </RigidBody>
-              <Player text={text} chatWindow={chatWindow} />
+              <Player
+                text={text}
+                chatWindow={chatWindow}
+                sendData={sendData}
+                id={userId}
+              />
             </Physics>
+            {Array.isArray(data) &&
+              data
+                .filter((item) => item.id !== userId)
+                .map((item, index) => <OtherPlayer key={index} data={item} />)}
             <Sky />
           </Suspense>
         </Canvas>

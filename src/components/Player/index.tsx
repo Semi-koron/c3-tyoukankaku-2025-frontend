@@ -4,19 +4,22 @@ import { useRef } from "react";
 import { Html, useKeyboardControls } from "@react-three/drei";
 import { Controls } from "../../App";
 import { useFrame } from "@react-three/fiber";
+import { SendData } from "../../types/websocket";
 
 type PlayerProps = {
   text: string;
+  id: string;
   chatWindow: boolean;
+  sendData: (data: SendData) => void;
 };
 
-export const Player = ({ text, chatWindow }: PlayerProps) => {
+export const Player = ({ text, id, chatWindow, sendData }: PlayerProps) => {
   const playerRef = useRef<RapierRigidBody>(null);
   const [sub, _get] = useKeyboardControls<Controls>();
 
   useFrame(() => {
     if (playerRef.current) {
-      const { y } = playerRef.current.translation();
+      const { x, y, z } = playerRef.current.translation();
       if (y < -10 || y > 50) {
         playerRef.current.setTranslation({ x: 0, y: 1, z: 0 }, true);
         playerRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
@@ -31,6 +34,24 @@ export const Player = ({ text, chatWindow }: PlayerProps) => {
           true
         );
       }
+      const { x: rx, y: ry, z: rz, w } = playerRef.current.rotation();
+      const data: SendData = {
+        id: id,
+        position: {
+          x: x,
+          y: y,
+          z: z,
+        },
+        rotation: {
+          x: rx,
+          y: ry,
+          z: rz,
+          w: w,
+        },
+        color: "#dd5555",
+        chat: text,
+      };
+      sendData(data);
     }
   });
   // Subscribe to the keyboard controls
@@ -67,15 +88,10 @@ export const Player = ({ text, chatWindow }: PlayerProps) => {
   return (
     <>
       {/* Player */}
-      <RigidBody
-        ref={playerRef}
-        colliders="cuboid"
-        position={[0, 1, 0]}
-        restitution={0.5}
-      >
+      <RigidBody ref={playerRef} colliders="cuboid" position={[0, 1, 0]}>
         <mesh>
           <boxGeometry />
-          <meshStandardMaterial color="orange" />
+          <meshStandardMaterial color="#888811" />
           <Html
             center
             distanceFactor={10}
