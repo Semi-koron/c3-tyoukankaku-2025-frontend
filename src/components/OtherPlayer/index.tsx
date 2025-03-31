@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Html } from "@react-three/drei";
 import { SendData } from "../../types/websocket";
 import * as THREE from "three";
