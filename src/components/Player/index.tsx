@@ -55,7 +55,7 @@ export const Player = ({
           z: rz,
           w: w,
         },
-        color: "#dd5555",
+        color: color,
         chat: text,
       };
       sendData(data);
