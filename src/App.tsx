@@ -69,10 +69,14 @@ function App() {
                 id={userId}
               />
             </Physics>
+            {/* 課題 6
             {Array.isArray(data) &&
-              data
-                .filter((item) => item.id !== userId)
-                .map((item, index) => <OtherPlayer key={index} data={item} />)}
+              data //
+                .filter((item) => item.id !== userId) //自分のデータは除外
+                // 受け取ったデータをもとにOtherPlayerを描画する
+                .map((item, index) => <OtherPlayer key={index} data={@} />)
+                }
+            */}
             <Sky />
           </Suspense>
         </Canvas>
