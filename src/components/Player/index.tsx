@@ -44,26 +44,29 @@ export const Player = ({
       }
 
       //他のユーザーに送るデータ
+
+      /* 課題7
       const data: SendData = {
         id: id, //自分の自身を識別するためのデータ
         position: {
           //自分の位置のデータ
-          x: x,
-          y: y,
-          z: z,
+          x: @,
+          y: @,
+          z: @,
         },
         rotation: {
           //自分がどちらを向いているかのデータ
-          x: rx,
-          y: ry,
-          z: rz,
-          w: w,
+          x: @,
+          y: @,
+          z: @,
+          w: @,
         },
         color: color, //自分の色のデータ
         chat: text, //自分今しゃべっている言葉のデータ
       };
 
       sendData(data); //データ送信
+      */
     }
   });
   // Subscribe to the keyboard controls
