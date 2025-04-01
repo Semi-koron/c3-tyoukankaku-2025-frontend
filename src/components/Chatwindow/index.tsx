@@ -49,7 +49,8 @@ export const ChatWindow = ({
 
   return (
     <>
-      {chatWindow && (
+      {/* 課題 4
+      { @ && (
         <div
           style={{
             position: "absolute",
@@ -100,6 +101,7 @@ export const ChatWindow = ({
           </button>
         </div>
       )}
+      */}
     </>
   );
 };
