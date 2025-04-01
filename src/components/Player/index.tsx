@@ -42,8 +42,9 @@ export const Player = ({
           true
         );
       }
+
+      //他のユーザーに送るデータ
       const data: SendData = {
-        //他のユーザーに送るデータ
         id: id, //自分の自身を識別するためのデータ
         position: {
           //自分の位置のデータ
@@ -61,6 +62,7 @@ export const Player = ({
         color: color, //自分の色のデータ
         chat: text, //自分今しゃべっている言葉のデータ
       };
+
       sendData(data); //データ送信
     }
   });
