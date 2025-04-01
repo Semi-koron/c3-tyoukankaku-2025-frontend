@@ -48,7 +48,8 @@ function App() {
           <Suspense>
             <directionalLight position={[5, 10, 5]} intensity={5} />
             {/* Physicsは3D空間上にかかる重力の設定ができる。x軸、y軸、z軸のどの軸でも重力を変更することができる */}
-            <Physics>
+            {/* 課題 2 */}
+            <Physics gravity={[0, 0, 0]}>
               {/* ステージのプログラム */}
               <RigidBody type="fixed">
                 <mesh position={[0, -1, 0]}>
