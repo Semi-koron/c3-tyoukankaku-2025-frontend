@@ -109,7 +109,7 @@ export const Player = ({
         <mesh>
           <boxGeometry />
           {/* meshStandardMaterialはプレイヤーの見た目*/}
-          <meshStandardMaterial color={color} />
+          <meshStandardMaterial color={"#ffffff"} />
           <Html
             center
             distanceFactor={10}
