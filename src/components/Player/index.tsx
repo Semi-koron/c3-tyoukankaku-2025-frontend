@@ -82,7 +82,7 @@ export const Player = ({
       ({ forward, back, left, right, jump }) => {
         // キーボード入力によって行われる処理
         // playerRef.current?.applyImpulse({ x: 0, y: 0, z: -5 }, true);はzに-5の力をプレイヤーに掛けるという意味
-        if (chatWindow) return;
+        if (chatWindow) return; // チャットウィンドウが開いているときは移動しない
         if (forward) {
           playerRef.current?.applyImpulse({ x: 0, y: 0, z: -5 }, true);
         }
