@@ -26,7 +26,8 @@ export const Player = ({
 
   useFrame(() => {
     if (playerRef.current) {
-      const { x, y, z } = playerRef.current.translation();
+      const { x, y, z } = playerRef.current.translation(); //自分の現在の位置をx y zに記録するコード
+      const { x: rx, y: ry, z: rz, w } = playerRef.current.rotation(); //自分の向きをrx ry rzに記録するコード
       if (y < -10 || y > 50) {
         playerRef.current.setTranslation({ x: 0, y: 1, z: 0 }, true);
         playerRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
@@ -41,24 +42,26 @@ export const Player = ({
           true
         );
       }
-      const { x: rx, y: ry, z: rz, w } = playerRef.current.rotation();
       const data: SendData = {
-        id: id,
+        //他のユーザーに送るデータ
+        id: id, //自分の自身を識別するためのデータ
         position: {
+          //自分の位置のデータ
           x: x,
           y: y,
           z: z,
         },
         rotation: {
+          //自分がどちらを向いているかのデータ
           x: rx,
           y: ry,
           z: rz,
           w: w,
         },
-        color: color,
-        chat: text,
+        color: color, //自分の色のデータ
+        chat: text, //自分今しゃべっている言葉のデータ
       };
-      sendData(data);
+      sendData(data); //データ送信
     }
   });
   // Subscribe to the keyboard controls
@@ -72,6 +75,8 @@ export const Player = ({
         jump,
       }),
       ({ forward, back, left, right, jump }) => {
+        // キーボード入力によって行われる処理
+        // playerRef.current?.applyImpulse({ x: 0, y: 0, z: -5 }, true);はzに-5の力をプレイヤーに掛けるという意味
         if (chatWindow) return;
         if (forward) {
           playerRef.current?.applyImpulse({ x: 0, y: 0, z: -5 }, true);
@@ -98,6 +103,7 @@ export const Player = ({
       <RigidBody ref={playerRef} colliders="cuboid" position={[0, 1, 0]}>
         <mesh>
           <boxGeometry />
+          {/* meshStandardMaterialはプレイヤーの見た目*/}
           <meshStandardMaterial color={color} />
           <Html
             center
