@@ -96,7 +96,9 @@ export const Player = ({
           playerRef.current?.applyImpulse({ x: 5, y: 0, z: 0 }, true);
         }
         if (jump) {
-          playerRef.current?.applyImpulse({ x: 0, y: 5, z: 0 }, true);
+          /* 課題3
+          playerRef.current?.applyImpulse({ x: @, y: @, z: @ }, true);
+          */
         }
       }
     );
