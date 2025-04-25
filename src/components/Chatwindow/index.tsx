@@ -7,7 +7,7 @@ type ChatWindowProps = {
   setChatData: React.Dispatch<React.SetStateAction<string>>;
   chatData: string;
   setShowChatWindow: React.Dispatch<React.SetStateAction<boolean>>;
-  chatWindow: boolean;
+  showChatWindow: boolean;
   setText: React.Dispatch<React.SetStateAction<string>>;
   color: string;
   setColor: React.Dispatch<React.SetStateAction<string>>;
@@ -17,7 +17,7 @@ export const ChatWindow = ({
   setChatData,
   chatData,
   setShowChatWindow,
-  chatWindow,
+  showChatWindow,
   setText,
   color,
   setColor,
@@ -30,7 +30,7 @@ export const ChatWindow = ({
         chat,
       }),
       ({ chat }) => {
-        if (chat && !chatWindow) {
+        if (chat && !showChatWindow) {
           setShowChatWindow(true);
         }
       }

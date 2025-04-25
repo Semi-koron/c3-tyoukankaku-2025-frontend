@@ -24,7 +24,7 @@ function App() {
   // プログラミングで必要な変数(データ)を管理するところ
   const [text, setText] = useState("");
   const [chatData, setChatData] = useState<string>("");
-  const [chatWindow, setChatWindow] = useState(false); // chatのウィンドウを状態(開いている/開いてない)を管理する変数
+  const [showChatWindow, setShowChatWindow] = useState(false); // chatのウィンドウを状態(開いている/開いてない)を管理する変数
   const [color, setColor] = useState("#ffffff"); // プレイヤーの色を管理する変数
   const { data, sendData, userId } = useWebSocket(); // オンラインに接続し、他プレイヤーのデータを受け取る、他プレイヤーにデータを送る
 
@@ -85,8 +85,8 @@ function App() {
         <ChatWindow
           setChatData={setChatData}
           chatData={chatData}
-          setChatWindow={setChatWindow}
-          chatWindow={chatWindow}
+          setShowChatWindow={setShowChatWindow}
+          showChatWindow={showChatWindow}
           setText={setText}
           color={color}
           setColor={setColor}
