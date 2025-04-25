@@ -64,7 +64,7 @@ function App() {
               {/* Player */}
               <Player
                 text={text}
-                chatWindow={chatWindow}
+                chatWindow={showChatWindow}
                 sendData={sendData}
                 color={color}
                 id={userId}
