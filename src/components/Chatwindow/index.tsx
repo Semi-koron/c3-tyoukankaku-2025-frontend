@@ -6,7 +6,7 @@ import { Controls } from "../../App";
 type ChatWindowProps = {
   setChatData: React.Dispatch<React.SetStateAction<string>>;
   chatData: string;
-  setChatWindow: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowChatWindow: React.Dispatch<React.SetStateAction<boolean>>;
   chatWindow: boolean;
   setText: React.Dispatch<React.SetStateAction<string>>;
   color: string;
@@ -16,7 +16,7 @@ type ChatWindowProps = {
 export const ChatWindow = ({
   setChatData,
   chatData,
-  setChatWindow,
+  setShowChatWindow,
   chatWindow,
   setText,
   color,
@@ -31,7 +31,7 @@ export const ChatWindow = ({
       }),
       ({ chat }) => {
         if (chat && !chatWindow) {
-          setChatWindow(true);
+          setShowChatWindow(true);
         }
       }
     );
@@ -39,7 +39,7 @@ export const ChatWindow = ({
 
   const messageSend = () => {
     setText(chatData);
-    setChatWindow(false);
+    setShowChatWindow(false);
     setChatData("");
     // 五秒後にsetTextを空にする
     setTimeout(() => {
