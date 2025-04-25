@@ -52,8 +52,8 @@ gravity={[x 軸の重力, y 軸の重力, z 軸の重力]}となっています�
 チャット欄は@の中身が true であるか false であるかによって表示する/表示しないを切り替えている
 この表示の状態を格納されている変数を探してみよう!
 
-ヒント: ChatWindow.tsx に出てくる chatWindow という変数と/src/App.tsx に出てくる chatWindow は
-同一人物です。/src/App.tsx に出てくる chatWindow はどんな説明がされているか探してみましょう
+ヒント: ChatWindow.tsx に出てくる showChatWindow という変数と/src/App.tsx に出てくる showChatWindow は
+同一人物です。/src/App.tsx に出てくる showChatWindow はどんな説明がされているか探してみましょう
 
 **課題 5**
 キューブの色を変更できるようにしてみよう!
