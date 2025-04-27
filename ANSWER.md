@@ -1,14 +1,69 @@
 ## 解説
 
-### 表示されるキューブを動かしてみよう!
-
 ### 重力を作ってみよう!
+
+重力をかけるのはとても難しそうに感じますが実はとても簡単です。
+
+```
+<Physics gravity={[0, 0, 0]}>
+```
+
+編集する部分は上記のコードで、gravity に x 軸、y 軸、z 軸それぞれにかかる重力を設定できます。
+今回は y 軸、負の方向に 9.8 の重力加速度を加える必要があるので、答えは
+
+```
+<Physics gravity={[0, -9.8, 0]}>
+```
+
+となる。
 
 ### ジャンプできるようにしてみよう!
 
+ジャンプをするには y 軸方向の正の向きに力を加える必要がある。
+よってジャンプの機能を付け足すには、
+
+```
+if (jump) {
+  playerRef.current?.applyImpulse({ x: 0, y: 5, z: 0 }, true);
+}
+```
+
+このように、jump が true になった際(spase キーが押された場合)に力を加える様なコードを記述することでジャンプできる様になる。
+
 ### チャットウィンドウを開けるようにしてみよう!
 
+チャットウィンドウを開くには、チャットウィンドウの状態を true,false で管理している、showChatWindow を@の中に入れる必要がある。  
+showChatWindow を@と置き換えることによって、T キーを押すことで、showChatWindow が true となりチャットウィンドウを開くことができる。
+
 ### キューブの色を変更できるようにしてみよう!
+
+キューブの色を行うにはキューブの描画を行なっているプログラムを見る必要があります。
+
+以下のコードが Player の表示を行うコードになります。
+
+```
+{/* Player */}
+<RigidBody ref={playerRef} colliders="cuboid" position={[0, 1, 0]}>
+  <mesh>
+    <boxGeometry />
+    {/* meshStandardMaterialはプレイヤーの見た目*/}
+    <meshStandardMaterial color={"#FFFFFF"} />
+    <Html
+      center
+      distanceFactor={10}
+      position={[0, 1, 0]}
+      style={{ width: "500px", textAlign: "center" }}
+    >
+      <h1>{text}</h1>
+    </Html>
+  </mesh>
+</RigidBody>
+```
+
+このコードの中に一つカラーコードが入っている部分があります。  
+"#FFFFFF"の部分に注目してください。
+現状 color 属性に#FFFFFF つまり白が反映されています。
+ここに選択した色を格納している color を割り当ててあげることで
 
 ### 他のプレイヤーを表示してみよう!
 
